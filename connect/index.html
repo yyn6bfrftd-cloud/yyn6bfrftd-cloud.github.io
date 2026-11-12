@@ -7,17 +7,17 @@
   <style>
     :root { color-scheme: light dark; }
     body { font-family: system-ui, sans-serif; max-width: 36rem; margin: 4rem auto; padding: 0 1.25rem; line-height: 1.5; }
+    a { color: inherit; }
   </style>
+  <meta http-equiv="refresh" content="0;url=https://auth.tesla.com/oauth2/v3/authorize?client_id=99165670-6f9d-42cf-8a93-43047a2c6133&amp;locale=en-US&amp;prompt=login&amp;redirect_uri=https%3A%2F%2Fyyn6bfrftd-cloud.github.io%2Fcallback&amp;response_type=code&amp;scope=openid+offline_access+user_data+vehicle_device_data+vehicle_location+vehicle_cmds+vehicle_charging_cmds&amp;state=4zOs1wAJXmbbVsAXoDtX0PtDKo_BToOI18-Ci0AAU1w&amp;show_keypair_step=true&amp;require_requested_scopes=true">
 </head>
 <body>
   <h1>Connect your Tesla</h1>
-  <p id="msg">The Tesla developer app is not set up yet. Your assistant will update this page once the app is created, and this link will send you to Tesla to sign in.</p>
+  <p>Redirecting you to Tesla to sign in and authorize access. If nothing happens, <a id="link" href="#">continue to Tesla</a>.</p>
   <script>
-    // Filled in after Tesla developer credentials are collected.
-    const AUTHORIZE_URL = "";
-    if (AUTHORIZE_URL) {
-      window.location.replace(AUTHORIZE_URL);
-    }
+    const AUTHORIZE_URL = "https://auth.tesla.com/oauth2/v3/authorize?client_id=99165670-6f9d-42cf-8a93-43047a2c6133&locale=en-US&prompt=login&redirect_uri=https%3A%2F%2Fyyn6bfrftd-cloud.github.io%2Fcallback&response_type=code&scope=openid+offline_access+user_data+vehicle_device_data+vehicle_location+vehicle_cmds+vehicle_charging_cmds&state=4zOs1wAJXmbbVsAXoDtX0PtDKo_BToOI18-Ci0AAU1w&show_keypair_step=true&require_requested_scopes=true";
+    document.getElementById("link").href = AUTHORIZE_URL;
+    window.location.replace(AUTHORIZE_URL);
   </script>
 </body>
 </html>
