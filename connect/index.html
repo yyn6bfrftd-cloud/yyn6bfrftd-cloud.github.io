@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect Tesla</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, sans-serif; max-width: 36rem; margin: 4rem auto; padding: 0 1.25rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <h1>Connect your Tesla</h1>
+  <p id="msg">The Tesla developer app is not set up yet. Your assistant will update this page once the app is created, and this link will send you to Tesla to sign in.</p>
+  <script>
+    // Filled in after Tesla developer credentials are collected.
+    const AUTHORIZE_URL = "";
+    if (AUTHORIZE_URL) {
+      window.location.replace(AUTHORIZE_URL);
+    }
+  </script>
+</body>
+</html>

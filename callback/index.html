@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tesla authorization code</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, sans-serif; max-width: 36rem; margin: 4rem auto; padding: 0 1.25rem; text-align: center; }
+    #code { font-size: 1.15rem; word-break: break-all; padding: 1rem; border: 1px solid currentColor; border-radius: 8px; margin: 1.5rem 0; }
+    button { font-size: 1.35rem; padding: 0.85rem 1.75rem; border-radius: 10px; cursor: pointer; }
+    .err { color: #c00; }
+  </style>
+</head>
+<body>
+  <h1>Your Tesla authorization code</h1>
+  <p>Copy this code and paste it back in chat.</p>
+  <div id="code"></div>
+  <button type="button" id="copy">Copy</button>
+  <p id="status"></p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const err = params.get("error") || params.get("error_description");
+    const el = document.getElementById("code");
+    const status = document.getElementById("status");
+    const btn = document.getElementById("copy");
+    if (err && !code) {
+      el.textContent = err;
+      el.className = "err";
+      btn.hidden = true;
+    } else if (code) {
+      el.textContent = code;
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(code);
+          status.textContent = "Copied.";
+        } catch {
+          const range = document.createRange();
+          range.selectNodeContents(el);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          status.textContent = "Select the code and copy it.";
+        }
+      });
+    } else {
+      el.textContent = "No code was returned. You can close this page and try connecting again.";
+      btn.hidden = true;
+    }
+  </script>
+</body>
+</html>
